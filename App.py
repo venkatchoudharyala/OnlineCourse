@@ -56,7 +56,7 @@ def VideoPanel(Set):
 	Path = "YTCourse/" + Set
 	Videos = FileReader(Path)
 	Seen = int(UserDetails["SeenCount"])
-	st.code(Videos["VideoLinks"][Seen]["LinkTitle"])
+	st.subheader(Videos["VideoLinks"][Seen]["LinkTitle"])
 	st.video(Videos["VideoLinks"][Seen]["Link"])
 	col1, col2 = st.columns(2)
 	with col1:

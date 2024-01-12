@@ -65,6 +65,7 @@ def VideoPanel(Set):
 				UserDetails["SeenCount"] = str(Seen - 1)
 				Path = "UserAcc/" + UserDetails["Name"] + ".ua"
 				FileWriter(Path, UserDetails)
+				st.rerun()
 			else:
 				st.error("You are at the first Video")
 	with col2:
@@ -75,6 +76,7 @@ def VideoPanel(Set):
 				UserDetails["SeenCount"] = str(Seen + 1)
 				Path = "UserAcc/" + UserDetails["Name"] + ".ua"
 				FileWriter(Path, UserDetails)
+				st.rerun()
 
 def QuestionsPanel(Set):
 	x = 1

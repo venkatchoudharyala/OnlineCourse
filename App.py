@@ -39,11 +39,16 @@ def main():
 			ap.main()
 		else:
 			if Status == "Verified":
-				tab1, tab2 = st.tabs(["Course", "Questionnaire"])
+				tab1, tab2, tab3 = st.tabs(["Course", "Questionnaire", "Results"])
 				with tab1:
 					VideoPanel(UserDetails["Set"])
 				with tab2:
 					QuestionsPanel(UserDetails["Set"])
+				with tab3:
+					if UserDetails["Result"] == "NO":
+						st.error("Please take Test to display your Results")
+					else:
+						st.success("You have Scored " + UserDetails["Result"])
 			else:
 				path = "LoginApp/UnVerified.uv"
 				k = FileReader(path)

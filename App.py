@@ -97,8 +97,7 @@ def QuestionsPanel(Set):
 				Path = "UserAcc/" + UserDetails["Name"] + ".ua"
 				FileWriter(Path, UserDetails)
 				st.success("Your Response Saved Successfully", icon = "✅")
-		if st.button("Refresh", key = "rf"):
-			st.rerun()
+				st.rerun()
 	else:
 		st.success("You Completed the Questionnaire", icon = "✅")
 

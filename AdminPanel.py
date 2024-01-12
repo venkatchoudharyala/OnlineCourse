@@ -13,6 +13,7 @@ def main():
 def Scrapper():
         dir = os.listdir("UserAcc")
         dir.remove("Admin.ua")
+        dir.remove("test.ua")
         with st.expander("Students"):
                 MPath = st.selectbox("Users", dir, key = "AdminP", label_visibility = "collapsed")
                 Path = "UserAcc/" + MPath

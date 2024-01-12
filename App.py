@@ -91,7 +91,7 @@ def QuestionsPanel(Set):
 		Ques = SetFile["Questions"][length]
 		with st.form("Questions", clear_on_submit = True):
 			st.code(Ques["Question"])
-			Answer = st.text_input("Type your Answer")
+			Answer = st.text_area("Type your Response")
 			if st.form_submit_button("Save your Answer"):
 				UserDetails["Answers"].append({"Answer": Answer, "AnswerStamp": str(datetime.datetime.now(pytz.timezone("Asia/Kolkata")))})
 				Path = "UserAcc/" + UserDetails["Name"] + ".ua"

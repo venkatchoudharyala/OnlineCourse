@@ -42,7 +42,7 @@ def main():
 			if Status == "Verified":
 				tab1, tab2 = st.tabs(["Course", "Questionnaire"])
 				with tab1:
-					VideoPanel()
+					VideoPanel(UserDetails["Set"])
 				with tab2:
 					QuestionsPanel()
 			else:

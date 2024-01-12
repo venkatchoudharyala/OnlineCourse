@@ -62,7 +62,7 @@ def LoginPage():
 
 #@st.cache_data(experimental_allow_widgets=True)
 def SignUpPage():
-	st.markdown("<h2 style='text-align: center; font-style: italic;'>AI BASED COURSE SYSTEM SIGN UP</h2>", unsafe_allow_html=True)
+	st.markdown("<h2 style='text-align: center; font-style: italic;'>AI BASED COURSE SYSTEM</h2>", unsafe_allow_html=True)
 	st.markdown("<h4 style='text-align: center;'>SIGN UP</h4>", unsafe_allow_html=True)
 	#st.write(" ")
 	st.subheader(" ")

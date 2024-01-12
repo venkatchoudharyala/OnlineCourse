@@ -34,7 +34,6 @@ def main():
 	if st.session_state["LoginVal"]:
 		st.session_state['page'] = "MainRoom"
 		UserName = UserDetails["Name"]
-		Role = UserDetails["Role"]
 		Status = UserDetails["AccVerifStatus"]
 		if UserName == "Admin":
 			ap.main()

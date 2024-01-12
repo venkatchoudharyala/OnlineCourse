@@ -115,7 +115,7 @@ def UpdateSet(SetName):
                         FileWriter("YTCourse/" + SetName, Data)
 
 def UpdateSetQuestions(SetName):
-        with st.form("New", clear_on_submit = True, border = False):
+        with st.form("New1", clear_on_submit = True, border = False):
                 Question = st.text_input("Enter the Title of the Link")
                 if st.form_submit_button("SAVE"):
                         Data = FileReader("YTCourse/" + SetName)

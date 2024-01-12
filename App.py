@@ -56,7 +56,25 @@ def main():
 def VideoPanel(Set):
 	Path = "YTCourse/" + Set
 	Videos = FileReader(Path)
-	st.video(Videos["VideoLinks"][0]["Link"])
+	Seen = UserDetails["SeenCount"]
+	st.video(Videos["VideoLinks"][int(Seen)]["Link"])
+	col1, col2 = st.columns(2)
+	with col1:
+		if st.button("Previous"):
+			if int(Seen) > 0:
+				UserDetails["SeenCount"] = str(Seen - 1)
+				Path = "UserAcc/" + UserDetails["Name"] + ".ua"
+				FileWriter(Path, UserDetails)
+			else:
+				st.error("You are at the first Video")
+	with col2:
+		if st.button("Next"):
+			if int(Seen) == (len(Videos["VideoLinks"]) - 1):
+				st.success("You completed the Course", icon = "✅")
+			else:
+				UserDetails["SeenCount"] = str(Seen + 1)
+				Path = "UserAcc/" + UserDetails["Name"] + ".ua"
+				FileWriter(Path, UserDetails)
 
 def QuestionsPanel(Set):
 	x = 1

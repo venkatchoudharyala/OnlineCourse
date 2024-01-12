@@ -5,7 +5,7 @@ import datetime
 import pytz
 
 def main():
-        tab1, tab2, tab3 = st.tabs(["Students", "Sets", ""Questionnaire])
+        tab1, tab2, tab3 = st.tabs(["Students", "Sets", "Questionnaire"])
         with tab1:
                 Scrapper()
         with tab2:

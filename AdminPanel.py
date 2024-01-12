@@ -63,10 +63,11 @@ def SetsPanel():
                 else:
                         Sets.remove("test.sf")
                         SelSet = st.selectbox("Select a Set", Sets)
-                        SelSetFile = FileReader("YTCourse/" + SelSet)
-                        for i in SelSetFile["VideoLinks"]:
-                                st.write(i)
-                        UpdateSet(SelSet)
+                        if SelSet:
+                                SelSetFile = FileReader("YTCourse/" + SelSet)
+                                for i in SelSetFile["VideoLinks"]:
+                                        st.write(i)
+                                UpdateSet(SelSet)
 
         with st.expander("Create New Set"):
                 with st.form("NewSet", clear_on_submit = True, border = False):

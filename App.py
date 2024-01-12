@@ -39,35 +39,24 @@ def main():
 		if UserName == "Admin":
 			ap.main()
 		else:
-			if Role == "Lead" and Status == "Verified":
-				tab1, tab2, tab3, tab4 = st.tabs(["Projects", "New Project", "Meetings", "New Meeting"])
+			if Status == "Verified":
+				tab1, tab2, tab3, tab4 = st.tabs(["Course", "Questionnaire"])
 				with tab1:
-					LeadPanel()
+					VideoPanel()
 				with tab2:
-					CreateProject()
-				with tab3:
-					MeetingPanel()
-				with tab4:
-					Projects = UserDetails["Projects"]
-					project = st.selectbox("Select a Project", Projects, index = None, key = "p")
-					if project != None:
-						k = os.listdir("MeetingNotes/" + project)
-						CreateMeetSession(project, len(k))
-					
-			elif Role == "Member" and Status == "Verified":
-				tab1, tab2 = st.tabs(["Projects", "Meetings"])
-				with tab1:
-					MemberPanel()
-				with tab2:
-					MeetingPanel()
+					QuestionsPanel()
 			else:
 				path = "LoginApp/UnVerified.uv"
-				with open(path, "r") as File:
-					k = json.load(File)
+				k = FileReader(path)
 				if UserName not in k["Names"]:
 					st.error("Your Account Creation was Suspended")
 				else:
 					st.error("Still in Review, You are not Authorized Yet!!")
+
+def VideoPanel(Set):
+	Path = "YTCourse/" + Set
+	Videos = FileReader(Path)
+	st.video(Videos["VideoLinks"][0]["Link"])
 
 def FileReader(Path):
 	with open(Path, "r") as File:

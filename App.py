@@ -84,7 +84,10 @@ def VideoPanel(Set):
 				st.rerun()
 
 def QuestionsPanel(Set):
-	x = 1
+	length = len(UserDetails["Answers"])
+	with st.form("Questions", clear_on_submit = True):
+		Answer = st.text_input("Type your Answer")
+		UserDetails["Answers"].append({"Answer": Answer, "AnswerStamp": str()})
 
 def FileReader(Path):
 	with open(Path, "r") as File:

@@ -116,7 +116,7 @@ def UpdateSet(SetName):
 
 def UpdateSetQuestions(SetName):
         with st.form("New1", clear_on_submit = True, border = False):
-                Question = st.text_input("Enter the Title of the Link")
+                Question = st.text_input("Enter the Question")
                 if st.form_submit_button("SAVE"):
                         Data = FileReader("YTCourse/" + SetName)
                         Data["Questions"].append({"Question": Question, "QuestionStamp": str(datetime.datetime.now(pytz.timezone("Asia/Kolkata")))})

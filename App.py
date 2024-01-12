@@ -87,7 +87,11 @@ def QuestionsPanel(Set):
 	length = len(UserDetails["Answers"])
 	with st.form("Questions", clear_on_submit = True):
 		Answer = st.text_input("Type your Answer")
-		UserDetails["Answers"].append({"Answer": Answer, "AnswerStamp": str()})
+		if st.form_submit_button("Save your Answer"):
+			UserDetails["Answers"].append({"Answer": Answer, "AnswerStamp": str(datetime.datetime.now(pytz.timezone("Asia/Kolkata")))})
+			Path = "UserAcc/" + UserDetails["Name"] + ".ua"
+			FileWriter(Path, UserDetails)
+			st.success("Your Response Saved Successfully", icon = "✅")
 
 def FileReader(Path):
 	with open(Path, "r") as File:

@@ -88,7 +88,7 @@ def QuestionnairePanel():
                         st.error("Create a Set")
                 else:
                         Sets.remove("test.sf")
-                        SelSet = st.selectbox("Select a Set", Sets)
+                        SelSet = st.selectbox("Select a Set", Sets, key = "1")
                         if SelSet:
                                 SelSetFile = FileReader("YTCourse/" + SelSet)
                                 for i in SelSetFile["Questions"]:

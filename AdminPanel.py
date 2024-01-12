@@ -18,7 +18,7 @@ def Scrapper():
                 MPath = st.selectbox("Users", dir, key = "AdminP", label_visibility = "collapsed")
                 if MPath:
                         Path = "UserAcc/" + MPath
-                        st.write(FileReader(MPath))
+                        st.write(FileReader(Path))
         with st.expander("Authorizations"):
                 UnvPath = "LoginApp/UnVerified.uv"
                 NewUsers = FileReader(UnvPath)

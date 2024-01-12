@@ -89,7 +89,7 @@ def QuestionsPanel(Set):
 	SetFile = FileReader(Path)
 	Ques = SetFile["Questions"][length]
 	with st.form("Questions", clear_on_submit = True):
-		st.code(Ques)
+		st.code(Ques["Question"])
 		Answer = st.text_input("Type your Answer")
 		if st.form_submit_button("Save your Answer"):
 			UserDetails["Answers"].append({"Answer": Answer, "AnswerStamp": str(datetime.datetime.now(pytz.timezone("Asia/Kolkata")))})

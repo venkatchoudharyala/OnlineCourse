@@ -76,8 +76,22 @@ def SetsPanel():
                         if st.form_submit_button("Create Set"):
                                 Path = "YTCourse/" + SetName + ".sf"
                                 with open(Path, "w") as File:
-                                        json.dump({"VideoLinks": Links, "CreationTime": str(datetime.datetime.now(pytz.timezone("Asia/Kolkata")))}, File)
+                                        json.dump({"VideoLinks": Links, "CreationTime": str(datetime.datetime.now(pytz.timezone("Asia/Kolkata"))), "Questions": []}, File)
                                 st.success("New Set: " + SetName + ", Created Successfully", icon = "✅")
+
+def QuestionnairePanel():
+        Sets = os.listdir("YTCourse/")
+        with st.expander("YTCourse Sets"):
+                if len(Sets) == 0:
+                        st.error("Create a Set")
+                else:
+                        Sets.remove("test.sf")
+                        SelSet = st.selectbox("Select a Set", Sets)
+                        if SelSet:
+                                SelSetFile = FileReader("YTCourse/" + SelSet)
+                                for i in SelSetFile["Questions"]:
+                                        st.write(i)
+                                UpdateSetQuestions(SelSet)
 
 
 def FileReader(Path):
@@ -96,6 +110,14 @@ def UpdateSet(SetName):
                 if st.form_submit_button("SAVE"):
                         Data = FileReader("YTCourse/" + SetName)
                         Data["VideoLinks"].append({"LinkTitle": LinkName, "Link": LinkID, "LinkStamp": str(datetime.datetime.now(pytz.timezone("Asia/Kolkata")))})
+                        FileWriter("YTCourse/" + SetName, Data)
+
+def UpdateSetQuestions(SetName):
+        with st.form("New", clear_on_submit = True, border = False):
+                Question = st.text_input("Enter the Title of the Link")
+                if st.form_submit_button("SAVE"):
+                        Data = FileReader("YTCourse/" + SetName)
+                        Data["Questions"].append({"Question": Question, "QuestionStamp": str(datetime.datetime.now(pytz.timezone("Asia/Kolkata")))})
                         FileWriter("YTCourse/" + SetName, Data)
 
 if __name__ == "__main__":

@@ -96,6 +96,8 @@ def QuestionsPanel(Set):
 			Path = "UserAcc/" + UserDetails["Name"] + ".ua"
 			FileWriter(Path, UserDetails)
 			st.success("Your Response Saved Successfully", icon = "✅")
+	if st.button("Next"):
+		st.rerun()
 
 def FileReader(Path):
 	with open(Path, "r") as File:

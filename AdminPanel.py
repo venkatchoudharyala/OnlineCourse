@@ -5,11 +5,13 @@ import datetime
 import pytz
 
 def main():
-        tab1, tab2 = st.tabs(["Students", "Sets"])
+        tab1, tab2, tab3 = st.tabs(["Students", "Sets", ""Questionnaire])
         with tab1:
                 Scrapper()
         with tab2:
                 SetsPanel()
+        with tab3:
+                QuestionnairePanel()
 def Scrapper():
         dir = os.listdir("UserAcc")
         dir.remove("Admin.ua")

@@ -87,8 +87,8 @@ def QuestionsPanel(Set):
 	length = len(UserDetails["Answers"])
 	Path = "YTCourse/" + Set
 	SetFile = FileReader(Path)
-	Ques = SetFile["Questions"][length]
-	if length != len(Ques):
+	if length != len(SetFile["Questions"]):
+		Ques = SetFile["Questions"][length]
 		with st.form("Questions", clear_on_submit = True):
 			st.code(Ques["Question"])
 			Answer = st.text_input("Type your Answer")

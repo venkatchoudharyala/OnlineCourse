@@ -44,7 +44,7 @@ def main():
 				with tab1:
 					VideoPanel(UserDetails["Set"])
 				with tab2:
-					QuestionsPanel()
+					QuestionsPanel(UserDetails["Set"])
 			else:
 				path = "LoginApp/UnVerified.uv"
 				k = FileReader(path)
@@ -57,6 +57,9 @@ def VideoPanel(Set):
 	Path = "YTCourse/" + Set
 	Videos = FileReader(Path)
 	st.video(Videos["VideoLinks"][0]["Link"])
+
+def QuestionsPanel(Set):
+	x = 1
 
 def FileReader(Path):
 	with open(Path, "r") as File:

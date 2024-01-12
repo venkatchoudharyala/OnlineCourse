@@ -85,19 +85,22 @@ def VideoPanel(Set):
 
 def QuestionsPanel(Set):
 	length = len(UserDetails["Answers"])
-	Path = "YTCourse/" + Set
-	SetFile = FileReader(Path)
-	Ques = SetFile["Questions"][length]
-	with st.form("Questions", clear_on_submit = True):
-		st.code(Ques["Question"])
-		Answer = st.text_input("Type your Answer")
-		if st.form_submit_button("Save your Answer"):
-			UserDetails["Answers"].append({"Answer": Answer, "AnswerStamp": str(datetime.datetime.now(pytz.timezone("Asia/Kolkata")))})
-			Path = "UserAcc/" + UserDetails["Name"] + ".ua"
-			FileWriter(Path, UserDetails)
-			st.success("Your Response Saved Successfully", icon = "✅")
-	if st.button("Refresh", key = "rf"):
-		st.rerun()
+	if length != len(UserDetails["Answers"]):
+		Path = "YTCourse/" + Set
+		SetFile = FileReader(Path)
+		Ques = SetFile["Questions"][length]
+		with st.form("Questions", clear_on_submit = True):
+			st.code(Ques["Question"])
+			Answer = st.text_input("Type your Answer")
+			if st.form_submit_button("Save your Answer"):
+				UserDetails["Answers"].append({"Answer": Answer, "AnswerStamp": str(datetime.datetime.now(pytz.timezone("Asia/Kolkata")))})
+				Path = "UserAcc/" + UserDetails["Name"] + ".ua"
+				FileWriter(Path, UserDetails)
+				st.success("Your Response Saved Successfully", icon = "✅")
+		if st.button("Refresh", key = "rf"):
+			st.rerun()
+	else:
+		st.success("You Completed the Questionnaire", icon = "✅")
 
 def FileReader(Path):
 	with open(Path, "r") as File:

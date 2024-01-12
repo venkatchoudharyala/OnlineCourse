@@ -61,6 +61,7 @@ def SetsPanel():
                 if len(Sets) == 0:
                         st.error("No Sets uploaded yet")
                 else:
+                        Sets.remove("test.sf")
                         SelSet = st.selectbox("Select a Set", Sets)
                         SelSetFile = FileReader("YTCourse/" + SelSet)
                         for i in SelSetFile["VideoLinks"]:

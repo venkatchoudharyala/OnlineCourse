@@ -40,7 +40,7 @@ def main():
 			ap.main()
 		else:
 			if Status == "Verified":
-				tab1, tab2, tab3, tab4 = st.tabs(["Course", "Questionnaire"])
+				tab1, tab2 = st.tabs(["Course", "Questionnaire"])
 				with tab1:
 					VideoPanel()
 				with tab2:

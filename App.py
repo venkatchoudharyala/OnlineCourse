@@ -137,7 +137,7 @@ def GeminiEvaluator(Question, Answer):
 	genai.configure(api_key='AIzaSyBE1HLZuDQHbVz1C6MPD9FcvPbkeJqGrQU')
 	
 	model = genai.GenerativeModel('gemini-pro')
-	prompt = "Hey Gemini this is Question: " + Question + " ; and this is the respective Answer: " + Answer + " ; Please evaluate the answer according to the question and just give the marks out of 10 and dont generate anything other than the marks awarded dont include outofs also..."
+	prompt = "Hey Gemini this is Question: " + Question + " ; and this is the respective Answer: " + Answer + " ; Please evaluate the answer (I want strict Evaluation) according to the question and just give the marks out of 10 and dont generate anything other than the marks awarded dont include outofs also..."
 	response = model.generate_content(prompt)
 	#Marks = to_markdown(response.text)
 	st.write(response.text)

@@ -140,7 +140,7 @@ def GeminiEvaluator(Question, Answer):
 	response = model.generate_content(prompt)
 	#Marks = to_markdown(response.text)
 	st.write(response.text)
-	return int(Marks)
+	return int(response.text)
 
 		
 

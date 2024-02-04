@@ -139,6 +139,7 @@ def GeminiEvaluator(Question, Answer):
 	prompt = "Hey Gemini this is Question: " + Question + " ; and this is the respective Answer: " + Answer + " ; Please evaluate the answer according to the question and just give the marks out of 10 and dont generate anything other than the marks..."
 	response = model.generate_content(prompt)
 	Marks = to_markdown(response.text)
+	st.write(Marks)
 	return int(Marks)
 
 		

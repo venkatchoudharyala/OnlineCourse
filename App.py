@@ -110,14 +110,15 @@ def QuestionsPanel(Set):
 		st.success("You Completed the Questionnaire", icon = "✅")
 		Path = "UserAcc/" + UserDetails["Name"] + ".ua"
 		EvalFile = FileReader(Path)
-		Solutions = EvalFile["Answers"]
-		FinalScore = 0
-		for i in Solutions:
-			Score = GeminiEvaluator(i["Question"], i["Answer"])
-			i["Score"] = Score
-			FinalScore += Score
-		EvalFile["Result"] = FinalScore
-		FileWriter(Path, EvalFile)
+		if EvalFile["Result"] == "NO":
+			Solutions = EvalFile["Answers"]
+			FinalScore = 0
+			for i in Solutions:
+				Score = GeminiEvaluator(i["Question"], i["Answer"])
+				i["Score"] = Score
+				FinalScore += Score
+			EvalFile["Result"] = FinalScore
+			FileWriter(Path, EvalFile)
 
 def FileReader(Path):
 	with open(Path, "r") as File:

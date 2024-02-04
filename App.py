@@ -56,7 +56,7 @@ def main():
 					if UserDetails["Result"] == "NO":
 						st.error("Please take Test to display your Results")
 					else:
-						st.success("You have Scored " + UserDetails["Result"])
+						st.success("You have Scored " + str(UserDetails["Result"]))
 			else:
 				path = "LoginApp/UnVerified.uv"
 				k = FileReader(path)

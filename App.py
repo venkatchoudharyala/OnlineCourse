@@ -10,6 +10,14 @@ import pytz
 import AdminPanel as ap
 import pandas as pd
 
+import pathlib
+import textwrap
+
+import google.generativeai as genai
+
+from IPython.display import display
+from IPython.display import Markdown
+
 hide_st_style = """
 		<style>
 		header {visibility: hidden;}
@@ -109,6 +117,19 @@ def FileReader(Path):
 def FileWriter(Path, Details):
 	with open(Path, "w") as File:
 		json.dump(Details, File)
+
+def to_markdown(text):
+  text = text.replace('•', '  *')
+  return textwrap.indent(text, '> ', predicate=lambda _: True)
+
+def GeminiEvaluator(Question, Answer):
+	genai.configure(api_key='AIzaSyBE1HLZuDQHbVz1C6MPD9FcvPbkeJqGrQU')
+	
+	model = genai.GenerativeModel('gemini-pro')
+	prompt = "Hey Gemini this is Question: " + Question + " ; and this is the respective Answer: " + Answer + " ; Please evaluate the answer according to the question and just give the marks out of 10 and dont generate anything other than the marks..."
+	response = model.generate_content(prompt)
+	Marks = to_markdown(response.text)
+
 		
 
 if __name__ == "__main__":

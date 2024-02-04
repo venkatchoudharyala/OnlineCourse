@@ -101,13 +101,23 @@ def QuestionsPanel(Set):
 			st.code(Ques["Question"])
 			Answer = st.text_area("Type your Response")
 			if st.form_submit_button("Save your Answer"):
-				UserDetails["Answers"].append({"Answer": Answer, "AnswerStamp": str(datetime.datetime.now(pytz.timezone("Asia/Kolkata")))})
+				UserDetails["Answers"].append({"Question": Ques["Question"], "Answer": Answer, "Score": 0, "AnswerStamp": str(datetime.datetime.now(pytz.timezone("Asia/Kolkata")))})
 				Path = "UserAcc/" + UserDetails["Name"] + ".ua"
 				FileWriter(Path, UserDetails)
 				st.success("Your Response Saved Successfully", icon = "✅")
 				st.rerun()
 	else:
 		st.success("You Completed the Questionnaire", icon = "✅")
+		Path = "UserAcc/" + UserDetails["Name"] + ".ua"
+		EvalFile = FileReader(Path)
+		Solutions = EvalFile["Answers"]
+		FinalScore = 0
+		for i in Solutions:
+			Score = GeminiEvaluator(i["Question"], i["Answer"])
+			i["Score"] = Score
+			FinalScore += Score
+		EvalFile["Result"] = FinalScore
+		FileWriter(Path, EvalFile)
 
 def FileReader(Path):
 	with open(Path, "r") as File:
@@ -129,6 +139,7 @@ def GeminiEvaluator(Question, Answer):
 	prompt = "Hey Gemini this is Question: " + Question + " ; and this is the respective Answer: " + Answer + " ; Please evaluate the answer according to the question and just give the marks out of 10 and dont generate anything other than the marks..."
 	response = model.generate_content(prompt)
 	Marks = to_markdown(response.text)
+	return Marks
 
 		
 
